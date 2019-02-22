@@ -80,9 +80,9 @@ projectRouter.post('/', async (req, res) => {
   //PUT
   projectRouter.put('/:id', async (req, res) => {
     try {
-      const updateProject = await db.update(req.params.id, req.body);
-      if (updateProject) {
-        res.status(200).json(updateProject);
+      const updateProjects = await db.update(req.params.id, req.body);
+      if (updateProjects) {
+        res.status(200).json(updateProjects);
       } else {
         res.status(404).json({ message: 'The project id could not be found' });
       }

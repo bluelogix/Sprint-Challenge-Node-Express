@@ -31,5 +31,18 @@ actionRouter.get('/', async (req, res) => {
     }
   });
 
+  actionRouter.post('/', async (req, res) => {
+    try {
+      const requirements = await db.insert(req.body);
+      res.status(201).json(requirements);
+    } catch (error) {
+      res.status(500).json({
+        message: 'Error adding the action',
+      });
+    }
+  });
+
+  
+
   module.exports = actionRouter;
   

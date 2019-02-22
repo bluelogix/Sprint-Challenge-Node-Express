@@ -36,9 +36,11 @@ actionRouter.get('/', async (req, res) => {
       const requirements = await db.insert(req.body);
       res.status(201).json(requirements);
     } catch (error) {
+      if(req.body.description.length > 128) {
       res.status(500).json({
         message: 'Error adding the action',
       });
+    }
     }
   });
 
@@ -57,7 +59,21 @@ actionRouter.get('/', async (req, res) => {
     }
   });
 
-
+  actionRouter.put('/:id', async (req, res) => {
+    try {
+      const updateAction= await db.update(req.params.id, req.body);
+      if (updateAction) {
+        res.status(200).json(updateAction);
+      } else {
+        res.status(404).json({ message: 'The action could not be found' });
+      }
+    } catch (error) {
+      res.status(500).json({
+        message: 'Error updating the action',
+      });
+    }
+  });
+  
 
   module.exports = actionRouter;
   

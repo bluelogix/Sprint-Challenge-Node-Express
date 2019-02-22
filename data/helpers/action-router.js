@@ -42,7 +42,22 @@ actionRouter.get('/', async (req, res) => {
     }
   });
 
-  
+  actionRouter.delete('/:id', async (req, res) => {
+    try {
+      const deleted = await db.remove(req.params.id);
+      if (deleted) {
+        res.status(200).json({ message: 'The action has been deleted' });
+      } else {
+        res.status(404).json({ message: 'The action cannot be deleted' });
+      }
+    } catch (error) {
+      res.status(500).json({
+        message: 'Error removing the action',
+      });
+    }
+  });
+
+
 
   module.exports = actionRouter;
   

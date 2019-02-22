@@ -3,6 +3,7 @@ const express = require('express');
 const  db = require('./actionModel.js')
 const actionRouter = express.Router();
 
+//GET
 actionRouter.get('/', async (req, res) => {
     try {
       const actions = await db.get();   
@@ -13,7 +14,8 @@ actionRouter.get('/', async (req, res) => {
       });
     }
   });
-
+  
+//GET BY ID
   actionRouter.get('/:id', async (req, res) => {
     try {
       const action = await db.get(req.params.id);
@@ -31,6 +33,7 @@ actionRouter.get('/', async (req, res) => {
     }
   });
 
+//POST
   actionRouter.post('/', async (req, res) => {
     try {
       const requirements = await db.insert(req.body);
@@ -44,6 +47,7 @@ actionRouter.get('/', async (req, res) => {
     }
   });
 
+//DELETE
   actionRouter.delete('/:id', async (req, res) => {
     try {
       const deleted = await db.remove(req.params.id);
@@ -59,6 +63,7 @@ actionRouter.get('/', async (req, res) => {
     }
   });
 
+//PUT
   actionRouter.put('/:id', async (req, res) => {
     try {
       const updateAction= await db.update(req.params.id, req.body);
@@ -73,6 +78,8 @@ actionRouter.get('/', async (req, res) => {
       });
     }
   });
+
+
   
 
   module.exports = actionRouter;

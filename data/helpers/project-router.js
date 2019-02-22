@@ -35,7 +35,7 @@ projectRouter.get('/', async (req, res) => {
 //GET ACTIONS FOR PROJECTS
   projectRouter.get('/:id/actions', async (req, res) => {
     try {
-      const project = await db.get(req.params.id);
+      const project = await db.getProjectActions(req.params.id);
   
       if (project) {
         res.status(200).json(project);

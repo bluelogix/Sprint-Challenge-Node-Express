@@ -8,4 +8,9 @@ server.use(express.json());
 server.use('/api/actions', actionRouter);
 server.use('/api/projects', projectRouter);
 
+//test get 
+server.get('/', (req, res) => {
+    res.send(`
+    <h1>Node-Express-Sprint-Challenge</h1>`);
+});
 module.exports = server;
